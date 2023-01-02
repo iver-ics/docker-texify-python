@@ -1,6 +1,7 @@
 FROM ubuntu:jammy
 
 LABEL Description="Dockerized Python/MiKTeX, Ubuntu 22.04LTS" Vendor="IVER" Version="1.0"
+LABEL org.opencontainers.image.description="Dockerized Python/MiKTeX, Ubuntu 22.04LTS"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
