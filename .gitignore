@@ -1,0 +1,12 @@
+# ignore python cache
+__pycache__
+
+# ignrore idea ide files
+.idea
+.fleet
+
+# ignore MacOS metadata files
+.DS_Store
+
+# Ignore python virtual envs.
+*venv*
