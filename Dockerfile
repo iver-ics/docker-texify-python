@@ -80,4 +80,4 @@ RUN python3 -m venv /app/docker_venv \
     && python3 /home/$USERNAME/get-pip.py
 
 COPY --chown=$USERNAME:$USERNAME entrypoint.sh /home/$USERNAME
-ENTRYPOINT /home/$USERNAME/entrypoint.sh
+ENTRYPOINT $HOME/entrypoint.sh
