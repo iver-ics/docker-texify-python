@@ -79,5 +79,5 @@ RUN python3 -m venv /app/docker_venv \
     && . /app/docker_venv/bin/activate \
     && python3 /home/$USERNAME/get-pip.py
 
-CMD ["bash"]
-# Or ex. ENTRYPOINT [ "python3", "main.py" ]
+COPY --chown=$USERNAME:$USERNAME entrypoint.sh /home/$USERNAME
+ENTRYPOINT [ "/home/$USERNAME/entrypoint.sh" ]
