@@ -70,7 +70,7 @@ RUN mkdir /miktex \
     && miktex --admin fndb refresh
 RUN chown -R $USERNAME:$USERNAME /miktex
 
-COPY --chmod=+x --chown=$USERNAME:$USERNAME entrypoint.sh /home/$USERNAME
+COPY --chmod=1744 --chown=$USERNAME:$USERNAME entrypoint.sh /home/$USERNAME
 ENTRYPOINT $HOME/entrypoint.sh
 
 # Set userlevel execution
