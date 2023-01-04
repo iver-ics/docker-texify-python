@@ -70,9 +70,6 @@ RUN mkdir /miktex \
     && miktex --admin fndb refresh
 RUN chown -R $USERNAME:$USERNAME /miktex
 
-COPY --chmod=1744 --chown=$USERNAME:$USERNAME entrypoint.sh /home/$USERNAME
-ENTRYPOINT $HOME/entrypoint.sh
-
 # Set userlevel execution
 RUN chown -R $USERNAME:$USERNAME /app
 USER $USERNAME
@@ -82,3 +79,4 @@ RUN python3 -m venv /app/docker_venv \
     && . /app/docker_venv/bin/activate \
     && python3 /home/$USERNAME/get-pip.py
 
+ENTRYPOINT /app/docker_venv/bin/activate
