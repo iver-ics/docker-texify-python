@@ -78,6 +78,8 @@ USER $USERNAME
 
 ## Get pip as user. Create a user level python virtual environemnt.
 RUN python3 -m venv /app/docker_venv \
-    && chmod +x /app/docker_venv/bin/activate \
     && . /app/docker_venv/bin/activate \
-    && python3 /home/$USERNAME/get-pip.py
+    && python3 /home/$USERNAME/get-pip.py \
+    && echo ". /app/docker_venv/bin/activate" >> /home/$USERNAME/.bashrc
+
+CMD ["/bin/bash"]
