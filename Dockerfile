@@ -13,6 +13,8 @@ ENV MIKTEX_USERCONFIG=/miktex/.miktex/texmfs/config
 ENV MIKTEX_USERDATA=/miktex/.miktex/texmfs/data
 ENV MIKTEX_USERINSTALL=/miktex/.miktex/texmfs/install
 
+SHELL ["/bin/bash", "-c"]
+
 # Install OS extras
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -76,8 +78,6 @@ USER $USERNAME
 
 ## Get pip as user. Create a user level python virtual environemnt.
 RUN python3 -m venv /app/docker_venv \
+    && chmod +x /app/docker_venv/bin/activate \
     && . /app/docker_venv/bin/activate \
     && python3 /home/$USERNAME/get-pip.py
-
-RUN chmod +x /app/docker_venv/bin/activate
-ENTRYPOINT /app/docker_venv/bin/activate
