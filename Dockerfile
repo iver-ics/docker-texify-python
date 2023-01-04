@@ -79,4 +79,5 @@ RUN python3 -m venv /app/docker_venv \
     && . /app/docker_venv/bin/activate \
     && python3 /home/$USERNAME/get-pip.py
 
+RUN chmod +x /app/docker_venv/bin/activate
 ENTRYPOINT /app/docker_venv/bin/activate
