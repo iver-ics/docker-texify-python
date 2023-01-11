@@ -47,8 +47,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa \
     && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 100 \
     && apt-get install -y --no-install-recommends \
         python-is-python3
-RUN curl https://bootstrap.pypa.io/get-pip.py > /home/$USERNAME/get-pip.py \
-    && chmod +x /home/$USERNAME/get-pip.py
+
 ## Enable pip/poetry binaries from user path.
 ENV PATH /home/$USERNAME/.local/bin:$PATH
 # Ensure local python is preferred over distribution python
@@ -76,12 +75,8 @@ RUN chown -R $USERNAME:$USERNAME /miktex
 RUN chown -R $USERNAME:$USERNAME /app
 USER $USERNAME
 
-## Get poetry as user. Create a user level python virtual environemnt.
+## Get pip & poetry as user.
+RUN curl -sSL https://bootstrap.pypa.io/get-pip.py | python3 -
 RUN curl -sSL https://install.python-poetry.org | python3 -
-## Get pip as user. Create a user level python virtual environemnt.
-RUN python3 -m venv /home/$USERNAME/app_venv \
-    && . /home/$USERNAME/app_venv/bin/activate \
-    && python3 /home/$USERNAME/get-pip.py \
-    && echo ". /$HOME/app_venv/bin/activate" >> /home/$USERNAME/.bashrc
 
 CMD ["/bin/bash"]
